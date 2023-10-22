@@ -2,8 +2,8 @@ package com.company.mariosy.controller;
 
 import com.company.mariosy.mappers.MariosMapper;
 import com.company.mariosy.repository.MariosRepository;
-import com.company.mariosy.service.MariosyService;
 import com.company.mariosy.repository.UserRepository;
+import com.company.mariosy.service.MariosyService;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -30,22 +30,4 @@ public class MariosControllerTest {
 }
 
 
-//    @Test
-//    @Transactional
-//    public void shouldBeMoreMarioses(){
-//        //given
-//        ControllerTestHelper.createUsersToGivenId(2, userController);
-//
-//        Long creatorId = 1L;
-//        Long receiverId = 2L;
-//
-//        int mariosesCount = mariosController.getAllMarioses().size();
-//        Set<Long> receiversIds = new HashSet<Long>(Sets.newHashSet(receiverId));
-//        MariosDTO mariosDTO = ControllerTestHelper.createMariosDTO(creatorId, receiversIds);
-//        //when
-//        ResponseEntity<String> responseEntity =  mariosController.createMarios(mariosDTO);
-//        int newMariosesCount = mariosController.getAllMarioses().size();
-//        //then
-//        Assertions.assertEquals(mariosesCount+1, newMariosesCount);
-//    }
 

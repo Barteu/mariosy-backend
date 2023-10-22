@@ -1,12 +1,12 @@
 package com.company.mariosy.service;
 
+import com.company.mariosy.mappers.MariosMapper;
+import com.company.mariosy.repository.MariosRepository;
+import com.company.mariosy.repository.UserRepository;
 import com.company.mariosy.DTO.MariosDTO;
 import com.company.mariosy.entity.MariosEntity;
 import com.company.mariosy.entity.MariosType;
 import com.company.mariosy.entity.UserEntity;
-import com.company.mariosy.mappers.MariosMapper;
-import com.company.mariosy.repository.MariosRepository;
-import com.company.mariosy.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

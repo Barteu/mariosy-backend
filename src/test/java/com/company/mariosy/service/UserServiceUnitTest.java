@@ -1,9 +1,9 @@
 package com.company.mariosy.service;
 
-import com.company.mariosy.DTO.UserDTO;
-import com.company.mariosy.entity.UserEntity;
 import com.company.mariosy.mappers.UserMapper;
 import com.company.mariosy.repository.UserRepository;
+import com.company.mariosy.DTO.UserDTO;
+import com.company.mariosy.entity.UserEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
