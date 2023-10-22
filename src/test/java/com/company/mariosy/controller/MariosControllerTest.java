@@ -2,8 +2,8 @@ package com.company.mariosy.controller;
 
 import com.company.mariosy.mappers.MariosMapper;
 import com.company.mariosy.repository.MariosRepository;
-import com.company.mariosy.service.MariosyService;
 import com.company.mariosy.repository.UserRepository;
+import com.company.mariosy.service.MariosyService;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

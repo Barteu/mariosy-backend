@@ -26,9 +26,8 @@ public class MariosMapper {
         mariosDTO.setType(mariosEntity.getType());
         mariosDTO.setCreationInstant(mariosEntity.getCreationInstant());
         UserEntity creatorEntity = mariosEntity.getCreator();
-        mariosDTO.setCreatorFirstName(creatorEntity.getFirstName());
-        mariosDTO.setCreatorLastName(creatorEntity.getLastName());
-        mariosDTO.setReceiversNames(receivers.stream().map(r -> String.format("%s %s", r.getFirstName(), r.getLastName())).collect(Collectors.toList()));
+        mariosDTO.setCreatorUsername(creatorEntity.getUsername());
+        mariosDTO.setReceiversNames(receivers.stream().map(r -> String.format("%s", r.getUsername())).collect(Collectors.toList()));
         return mariosDTO;
     }
 

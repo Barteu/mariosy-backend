@@ -8,6 +8,8 @@ import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,16 +27,19 @@ public class MariosController {
     }
 
     @GetMapping("/marioses")
+    @PreAuthorize("hasRole('client_admin')")
     public List<MariosDTO> getAllMarioses() {
         return mariosyService.getMariosesDTOs();
     }
 
     @GetMapping(value = "/marioses", params = {"page", "size"})
+    @PreAuthorize("hasRole('client_admin')")
     public List<MariosDTO> getAllMariosesWithPaginationAndOrder(@RequestParam Integer page, @RequestParam Integer size) {
         return mariosyService.getPaginatedMariosesDTOs(page, size);
     }
 
     @GetMapping("/marioses/{mariosExternalId}")
+    @PreAuthorize("hasRole('client_admin')")
     public ResponseEntity<MariosDTO> getMariosById(@PathVariable("mariosExternalId") UUID mariosExternalId) {
         Optional<MariosDTO> mariosDTOOptional = mariosyService.getMariosDTOByExternalId(mariosExternalId);
         if (mariosDTOOptional.isEmpty()) {
@@ -45,6 +50,7 @@ public class MariosController {
     }
 
     @PostMapping("/marioses")
+    @PreAuthorize("hasAnyRole('client_user','client_admin')")
     public ResponseEntity<MariosDTO> createMarios(@RequestBody @NotNull MariosDTO mariosDTO) {
         try {
             MariosDTO returnMariosDTO = mariosyService.createMarios(mariosDTO);
@@ -59,16 +65,29 @@ public class MariosController {
     }
 
     @GetMapping("/users/{userExternalId}/marioses/created")
-    public List<MariosDTO> getMariosesCreatedByUser(@PathVariable("userExternalId") UUID userExternalId) {
-        return mariosyService.getMariosesDTOsCreatedByUser(userExternalId);
+    @PreAuthorize("hasAnyRole('client_user','client_admin')")
+    public ResponseEntity<List<MariosDTO>> getMariosesCreatedByUser(@PathVariable("userExternalId") UUID userExternalId, JwtAuthenticationToken token) {
+        if (token.getName().equals(userExternalId.toString())){
+            return new ResponseEntity<>(mariosyService.getMariosesDTOsCreatedByUser(userExternalId), HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/users/{userExternalId}/marioses/received")
-    public List<MariosDTO> getSortedMariosesReceivedByUser(@PathVariable UUID userExternalId) {
-        return mariosyService.getMariosesDTOsReceivedByUser(userExternalId);
+    @PreAuthorize("hasAnyRole('client_user','client_admin')")
+    public ResponseEntity<List<MariosDTO>> getSortedMariosesReceivedByUser(@PathVariable UUID userExternalId, JwtAuthenticationToken token) {
+        if (token.getName().equals(userExternalId.toString())){
+            return new ResponseEntity<>(mariosyService.getMariosesDTOsReceivedByUser(userExternalId), HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/marioses/{mariosExternalId}")
+    @PreAuthorize("hasRole('client_admin')")
     public ResponseEntity deleteMarios(@PathVariable UUID mariosExternalId) {
         mariosyService.deleteMarios(mariosExternalId);
         return new ResponseEntity(HttpStatus.OK);

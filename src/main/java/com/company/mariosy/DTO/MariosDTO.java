@@ -21,9 +21,7 @@ public class MariosDTO {
 
     private String additionalMessage;
 
-    private String creatorFirstName;
-
-    private String creatorLastName;
+    private String creatorUsername;
 
     private List<String> receiversNames;
 
@@ -91,20 +89,12 @@ public class MariosDTO {
         this.additionalMessage = additionalMessage;
     }
 
-    public String getCreatorFirstName() {
-        return creatorFirstName;
+    public String getCreatorUsername() {
+        return creatorUsername;
     }
 
-    public void setCreatorFirstName(String creatorFirstName) {
-        this.creatorFirstName = creatorFirstName;
-    }
-
-    public String getCreatorLastName() {
-        return creatorLastName;
-    }
-
-    public void setCreatorLastName(String creatorLastName) {
-        this.creatorLastName = creatorLastName;
+    public void setCreatorUsername(String creatorUsername) {
+        this.creatorUsername = creatorUsername;
     }
 
     public List<String> getReceiversNames() {

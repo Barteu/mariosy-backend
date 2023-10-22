@@ -1,11 +1,14 @@
 package com.company.mariosy.controller;
 
 import com.company.mariosy.DTO.UserDTO;
+import com.company.mariosy.security.JwtConverter;
 import com.company.mariosy.service.IllegalUserFieldValueException;
 import com.company.mariosy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,39 +27,39 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<UserDTO> getAllUsers() {
+    @PreAuthorize("hasRole('client_admin')")
+    public List<UserDTO> getAllUsers(JwtAuthenticationToken token) {
         return userService.getAllUsersDTOs();
     }
 
     @GetMapping(value = "/users", params = "searchKeyword")
+    @PreAuthorize("hasAnyRole('client_user','client_admin')")
     public List<UserDTO> searchUsers(@RequestParam("searchKeyword") String searchKeyword) {
         return userService.searchUsersDTOs(searchKeyword);
     }
 
-    @GetMapping(value = "/users", params = "email")
-    public ResponseEntity<UserDTO> getUserByEmail(@RequestParam String email) {
-        Optional<UserDTO> userDTOOptional = userService.getUserDTOByEmail(email);
-        if (userDTOOptional.isPresent()) {
-            return new ResponseEntity<>(userDTOOptional.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
-
     @GetMapping("/users/{userExternalId}")
-    public ResponseEntity<UserDTO> getUserByExternalId(@PathVariable UUID userExternalId) {
-        Optional<UserDTO> userDTOOptional = userService.getUserDTOByExternalId(userExternalId);
-        if (userDTOOptional.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(userDTOOptional.get(), HttpStatus.OK);
+    @PreAuthorize("hasRole('client_user')")
+    public ResponseEntity<UserDTO> getUserByExternalId(@PathVariable UUID userExternalId, JwtAuthenticationToken token) {
+        if (token.getName().equals(userExternalId.toString())) {
+            Optional<UserDTO> userDTOOptional = userService.getUserDTOByExternalId(userExternalId);
+            if (userDTOOptional.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(userDTOOptional.get(), HttpStatus.OK);
+            }
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/users")
-    public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDTO) {
+    @PreAuthorize("hasAnyRole('client_user','client_admin')")
+    public ResponseEntity<UserDTO> addUser(JwtAuthenticationToken token) {
         try {
-            UserDTO responseUserDTO = userService.createUser(userDTO);
+            String username = JwtConverter.getUsernameFromJwt(token.getToken());
+            UserDTO responseUserDTO = userService.createUser(UUID.fromString(token.getName()), username);
             return new ResponseEntity<>(responseUserDTO, HttpStatus.CREATED);
         } catch (IllegalUserFieldValueException e) {
             UserDTO emptyUserDTO = new UserDTO();
@@ -68,6 +71,7 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{userExternalId}")
+    @PreAuthorize("hasRole('client_admin')")
     public ResponseEntity deleteUser(@PathVariable UUID userExternalId) {
         userService.deleteUser(userExternalId);
         return new ResponseEntity(HttpStatus.OK);

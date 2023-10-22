@@ -42,9 +42,9 @@ public class MariosyServiceUnitTest {
     @BeforeEach
     public void initTestData() {
         this.users = new ArrayList<UserEntity>();
-        this.users.add(new UserEntity("Jan", "Janowski", "janek@email.com"));
-        this.users.add(new UserEntity("Marta", "Martowska", "marta.marto@ko.com"));
-        this.users.add(new UserEntity("Mariusz", "Mariuszewicz", "mariuszek@email.pl"));
+        this.users.add(new UserEntity(UUID.fromString("9386e578-e573-47a7-99b1-87228a5dfe61"),"JanJanowski"));
+        this.users.add(new UserEntity(UUID.fromString("8386e578-e573-47a7-99b1-87228a5dfe62"), "MarciaMartowska"));
+        this.users.add(new UserEntity(UUID.fromString("7386e578-e573-47a7-99b1-87228a5dfe63"), "MariuszekMariuszewicz"));
 
         this.marioses = new ArrayList<MariosEntity>();
         this.marioses.add(new MariosEntity(MariosType.MARIOS_T1, "some comment", "good job"));
