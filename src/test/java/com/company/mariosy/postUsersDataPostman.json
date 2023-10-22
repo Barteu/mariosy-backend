@@ -1,0 +1,18 @@
+[
+  {
+    "firstName": "Bartosz",
+    "lastName": "Bartowski",
+    "email": "bartosz.bartowski@email.com",
+    "email2": "bartosz.bartowski2@email.eu",
+    "wrongEmail" : "bartosz.bartowski.et.email.com",
+    "wrongFirstName" : ""
+  },
+  {
+    "firstName": "Bartlomiej",
+    "lastName": "Bartlomiejczak",
+    "email": "b123@mail.eu",
+    "email2": "c123@email.eu",
+    "wrongEmail": "a@b",
+    "wrongFirstName" : "bartek123"
+  }
+]

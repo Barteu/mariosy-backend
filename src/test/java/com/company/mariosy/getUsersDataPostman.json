@@ -1,0 +1,52 @@
+[
+  {
+    "users": [
+      {
+        "firstName": "Joe",
+        "lastName": "Doe",
+        "email": "joe.doe@email.com"
+      },
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email" : "john.doe@email.com"
+      },
+      {
+        "firstName": "Jack",
+        "lastName" : "Donut",
+        "email": "fastcar123@email.com"
+      },
+      {
+        "firstName": "Bob",
+        "lastName": "Burgerson",
+        "email": "abc@abc.eu"
+      }
+    ],
+    "wrongEmail": "abc"
+  },
+  {
+    "users": [
+      {
+        "firstName": "Kaka",
+        "lastName": "Koke",
+        "email": "kakoke@email.com"
+      },
+      {
+        "firstName": "Kakao",
+        "lastName": "Kaka",
+        "email" : "kaka.ko@email.com"
+      },
+      {
+        "firstName": "Kakao",
+        "lastName" : "Koke",
+        "email": "wrrr123@email.com"
+      },
+      {
+        "firstName": "Kokos",
+        "lastName": "Kokowski",
+        "email": "abc0xyz@abc.eu"
+      }
+    ],
+    "wrongEmail" : "ka@email.com"
+  }
+]

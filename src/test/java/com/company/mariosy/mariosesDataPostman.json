@@ -1,0 +1,75 @@
+[
+  {
+    "marioses": [
+      {
+        "comment": "Lorem ipsum",
+        "type": 1,
+        "title": "Loooorem ipsum"
+      },
+      {
+        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales commodo porta. Integer commodo nisi eget mi porta, sit amet tempor lacus molestie.",
+        "type": 3,
+        "title": "Loooorem ipsum2"
+      }
+    ],
+    "users": [
+      {
+        "firstName": "Jacek",
+        "lastName": "Jackowski",
+        "email": "jacek.jackowski@email.com"
+      },
+      {
+        "firstName": "Marek",
+        "lastName": "Marecki",
+        "email" : "marek.marecki@email.com"
+      },
+      {
+        "firstName": "Jan",
+        "lastName" : "Janowski",
+        "email": "fastbike123@email.com"
+      },
+      {
+        "firstName": "Marta",
+        "lastName": "Martowska",
+        "email": "abc123abc@abc.uk"
+      }
+    ]
+  },
+  {
+    "marioses": [
+      {
+        "comment": "Lorem ipsum 123",
+        "type": 2,
+        "title": "Loooorem ipsum3"
+      },
+      {
+        "comment": "123 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales commodo porta. Integer commodo nisi eget mi porta, sit amet tempor lacus molestie.",
+        "type": 4,
+        "title": "Loooorem ipsum4"
+      }
+    ],
+    "users": [
+      {
+        "firstName": "Mariusz",
+        "lastName": "Mariunowski",
+        "email": "mariusz.mariunowski@email.com"
+      },
+      {
+        "firstName": "Karolina",
+        "lastName": "Karolska",
+        "email" : "karolina.karolska@email.com"
+      },
+      {
+        "firstName": "Amadeusz",
+        "lastName" : "Amadowski",
+        "email": "bigcar321@email.com"
+      },
+      {
+        "firstName": "Karol",
+        "lastName": "Karolowski",
+        "email": "xyz121xyz@xyz.uk"
+      }
+    ]
+  }
+]
+
